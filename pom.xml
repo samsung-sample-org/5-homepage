@@ -19,8 +19,8 @@
     <groupId>com.ss</groupId>
     <artifactId>homepage</artifactId>
     <version>1.0.0</version>
-    <!-- REST 기반 - JSP 없음, JAR 패키징 사용 -->
-    <packaging>jar</packaging>
+    <!-- JSP 사용을 위해 WAR 패키징 필요 (내장 톰캣에서 JSP는 JAR 패키징으로 불가) -->
+    <packaging>war</packaging>
     <name>homepage</name>
     <description>홈페이지 시스템 - Spring Boot 3 전환</description>
 
@@ -331,6 +331,27 @@
         <!-- DB (로컬 개발/테스트용)                                        -->
         <!-- ============================================================== -->
 
+        <!-- ============================================================== -->
+        <!-- JSP 지원 (기존 JSP 화면 유지)                                   -->
+        <!-- ============================================================== -->
+
+        <!-- JSP 컴파일러: Spring Boot에서 JSP를 사용하기 위한 임베디드 Jasper -->
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- JSTL 구현: JSP에서 JSTL 태그 사용 -->
+        <dependency>
+            <groupId>org.glassfish.web</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+        </dependency>
+
+        <!-- ============================================================== -->
+        <!-- DB (로컬 개발/테스트용)                                        -->
+        <!-- ============================================================== -->
+
         <!-- H2 인메모리 DB - 로컬 테스트 및 개발 환경용 -->
         <dependency>
             <groupId>com.h2database</groupId>
@@ -363,8 +384,8 @@
               → artifactId 변경 및 API 재설계
 
             [제거] sitemesh
-              → 사용 지양 (REST 기반 전환, JSP 없음)
-              → Thymeleaf 또는 REST API 응답으로 대체
+              → JSP include / 레이아웃 방식으로 대체
+              → Spring Boot 3 환경에서 불필요
 
             [제거] jxl (Excel 라이브러리)
               → POI 5.x로 대체 (.xlsx OOXML 지원 포함)
