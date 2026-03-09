@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Ehcache 3 XML 설정 파일 -->
+<!-- ASIS: Ehcache 2.x → TOBE: Ehcache 3 (JCache/JSR-107 호환) -->
+<config
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.ehcache.org/v3"
+    xsi:schemaLocation="http://www.ehcache.org/v3
+        http://www.ehcache.org/schema/ehcache-core-3.0.xsd">
+
+  <!-- sampleCache: 힙 최대 100개 엔트리, TTL 60초 -->
+  <cache alias="sampleCache">
+    <key-type>java.lang.String</key-type>
+    <value-type>java.lang.Object</value-type>
+    <expiry>
+      <ttl unit="seconds">60</ttl>
+    </expiry>
+    <resources>
+      <heap unit="entries">100</heap>
+    </resources>
+  </cache>
+
+</config>
