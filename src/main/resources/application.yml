@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: homepage-verification
+  # H2 인메모리 DB (로컬 테스트용 기본 프로파일)
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.H2Dialect
+  # Ehcache 3 JCache 설정
+  cache:
+    type: jcache
+    jcache:
+      config: classpath:ehcache.xml
+  # Quartz 설정
+  quartz:
+    job-store-type: memory
+    properties:
+      org:
+        quartz:
+          threadPool:
+            threadCount: 3
+
+server:
+  port: 8081

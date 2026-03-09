@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ASIS: Log4j 1.2.16 → TOBE: Logback (Spring Boot 기본) -->
+<!-- Spring Boot는 Logback을 기본 로깅 프레임워크로 사용하며, 별도 의존성 추가 불필요 -->
+<configuration>
+
+  <!-- 콘솔 출력 Appender -->
+  <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <!-- 패턴: 날짜 / 로그레벨 / 로거명 / 메시지 -->
+      <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%level] %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <!-- 루트 로거 설정 -->
+  <root level="INFO">
+    <appender-ref ref="CONSOLE" />
+  </root>
+
+</configuration>
