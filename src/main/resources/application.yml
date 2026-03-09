@@ -32,5 +32,11 @@ spring:
           threadPool:
             threadCount: 3
 
+  # JSP 설정 (기존 JSP 화면 유지)
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+
 server:
   port: 8081
